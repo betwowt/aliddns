@@ -21,7 +21,7 @@ headers = {
 class client :
 
     """
-        获取外网ip
+        获取公网ip
     """
 
     def getMyIp(self):
