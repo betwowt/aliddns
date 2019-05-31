@@ -18,7 +18,7 @@ headers = {
 }
 
 
-class client :
+class Client:
 
     """
         获取公网ip

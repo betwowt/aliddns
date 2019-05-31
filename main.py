@@ -7,6 +7,6 @@ from crawl import crawl_client
 """
 
 if __name__ == '__main__':
-    ip = crawl_client.client().getMyIp()
+    ip = crawl_client.Client().getMyIp()
 
 
