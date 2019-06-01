@@ -1,7 +1,9 @@
 import requests
 
 from bs4 import BeautifulSoup
+import logging
 
+logger = logging.getLogger(__name__)
 
 headers = {
     'Accept': "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3",
@@ -25,12 +27,12 @@ class Client:
     """
 
     def getMyIp(self):
-        print('开始查询ip')
+        logger.info('开始查询ip')
         r = requests.get("https://www.ipip.net/ip.html", headers=headers);
         htmlEncoded = r.text.encode('utf-8')
         html = BeautifulSoup(htmlEncoded, 'html.parser')
         form = html.find('form')
         ip = form.contents[1]['value']
-        print(ip)
+        logger.info("当前公网ip为:%s",ip)
         return ip
 

@@ -1,5 +1,6 @@
 {
   "accessKeyId": "",
   "accessSecret": "",
-  "domain":""
+  "domainName":"",
+  "tertiaryDomain":""
 }
