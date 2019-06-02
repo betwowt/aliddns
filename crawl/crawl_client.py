@@ -29,7 +29,8 @@ class Client:
     def get_my_ip():
         logger.info('开始查询ip')
         r = requests.get("https://www.ipip.net/ip.html", headers=headers)
-        html_encoded = str(r.content, encoding='utf-8')
+        r.encoding = 'utf-8'
+        html_encoded = str(r.text, encoding='utf-8')
         html = BeautifulSoup(html_encoded, 'html.parser')
         form = html.find('form')
         ip = form.contents[1]['value']
