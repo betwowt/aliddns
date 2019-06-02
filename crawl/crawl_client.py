@@ -30,7 +30,7 @@ class Client:
         logger.info('开始查询ip')
         r = requests.get("https://www.ipip.net/ip.html", headers=headers)
         r.encoding = 'utf-8'
-        html_encoded = str(r.text, encoding='utf-8')
+        html_encoded = r.text
         html = BeautifulSoup(html_encoded, 'html.parser')
         form = html.find('form')
         ip = form.contents[1]['value']
