@@ -25,12 +25,12 @@ class Client:
     """
         获取公网ip
     """
-
-    def getMyIp(self):
+    @staticmethod
+    def get_my_ip():
         logger.info('开始查询ip')
         r = requests.get("https://www.ipip.net/ip.html", headers=headers);
-        htmlEncoded = r.text.encode('utf-8')
-        html = BeautifulSoup(htmlEncoded, 'html.parser')
+        html_encoded = str(r.text, encoding='utf-8')
+        html = BeautifulSoup(html_encoded, 'html.parser')
         form = html.find('form')
         ip = form.contents[1]['value']
         logger.info("当前公网ip为:%s",ip)

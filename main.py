@@ -1,4 +1,4 @@
-from alisdk.ali_sdk_consumer import consumer
+from alisdk.ali_sdk_consumer import Consumer
 from crawl.crawl_client import Client
 import logging
 
@@ -17,14 +17,14 @@ logger = logging.getLogger(__name__)
 
 if __name__ == '__main__':
     logging.info("程序开始")
-    ip = Client().getMyIp()
-    consumer = consumer()
-    list = consumer.getDnsList()
+    ip = Client.get_my_ip()
+    consumer = Consumer()
+    list = consumer.get_dns_list()
     for item in list:
         old_ip = item['Value'];
         if(old_ip != ip):
             logging.info("旧ip:%s,与新ip:%s存在差异,更新域名解析为新ip:%s",old_ip,ip,ip)
-            consumer.updateDnsResolve(ip,item['RecordId'],item['Type'])
+            consumer.update_dns_resolve(ip, item['RecordId'], item['Type'])
         else:
             logging.info("ip一致无需修改")
     logging.info("程序结束")

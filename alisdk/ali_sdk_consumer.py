@@ -8,16 +8,15 @@ from aliyunsdkalidns.request.v20150109.DescribeDomainRecordsRequest import Descr
 from aliyunsdkalidns.request.v20150109.UpdateDomainRecordRequest import UpdateDomainRecordRequest
 import logging
 
+
+logger = logging.getLogger(__name__)
+
 """
     aliyun dns api 调度类
 """
 
-logger = logging.getLogger(__name__)
 
-class consumer:
-
-    data:object
-    client:AcsClient
+class Consumer:
 
     # 读取配置文件
     def __init__(self):
@@ -35,7 +34,7 @@ class consumer:
         self.data = data
 
     # 获取dns解析列表
-    def getDnsList(self):
+    def get_dns_list(self):
 
         request = DescribeDomainRecordsRequest()
         request.set_accept_format('json')
@@ -45,8 +44,7 @@ class consumer:
         res_json = json.loads(str(response, encoding='utf-8'))
         return res_json['DomainRecords']['Record']
 
-
-    def updateDnsResolve(self,ip,recordId,type):
+    def update_dns_resolve(self, ip, recordId, type):
         request = UpdateDomainRecordRequest()
         request.set_accept_format('json')
         request.set_Value(ip)
