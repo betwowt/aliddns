@@ -1,13 +1,11 @@
 
 
 import json
-from aliyunsdkcore.client import AcsClient
-from aliyunsdkcore.acs_exception.exceptions import ClientException
-from aliyunsdkcore.acs_exception.exceptions import ServerException
-from aliyunsdkalidns.request.v20150109.DescribeDomainRecordsRequest import DescribeDomainRecordsRequest
-from aliyunsdkalidns.request.v20150109.UpdateDomainRecordRequest import UpdateDomainRecordRequest
 import logging
 
+from aliyunsdkalidns.request.v20150109.DescribeDomainRecordsRequest import DescribeDomainRecordsRequest
+from aliyunsdkalidns.request.v20150109.UpdateDomainRecordRequest import UpdateDomainRecordRequest
+from aliyunsdkcore.client import AcsClient
 
 logger = logging.getLogger(__name__)
 
@@ -19,8 +17,8 @@ logger = logging.getLogger(__name__)
 class Consumer:
 
     # 读取配置文件
-    def __init__(self):
-        with open('settings.json','r') as myfile:
+    def __init__(self, json_file):
+        with open(json_file, 'r') as myfile:
             data = myfile.read()
         self.data = json.loads(data)
         self.client = AcsClient(self.get_data()['accessKeyId'], self.get_data()['accessSecret'], 'cn-hangzhou')

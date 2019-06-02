@@ -1,6 +1,8 @@
+import logging
+import os
+
 from alisdk.ali_sdk_consumer import Consumer
 from crawl.crawl_client import Client
-import logging
 
 # 日志配置
 logging.basicConfig(filename='log.log',
@@ -18,7 +20,7 @@ logger = logging.getLogger(__name__)
 if __name__ == '__main__':
     logging.info("程序开始")
     ip = Client.get_my_ip()
-    consumer = Consumer()
+    consumer = Consumer(os.path.join(os.getcwd(), "settings.json"))
     list = consumer.get_dns_list()
     for item in list:
         old_ip = item['Value'];
@@ -28,4 +30,3 @@ if __name__ == '__main__':
         else:
             logging.info("ip一致无需修改")
     logging.info("程序结束")
-
