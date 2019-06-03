@@ -12,6 +12,7 @@ logging.basicConfig(filename='log.log',
 
 logger = logging.getLogger(__name__)
 
+setting_file = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'settings.json')
 
 """
     程序入口
@@ -20,7 +21,7 @@ logger = logging.getLogger(__name__)
 if __name__ == '__main__':
     logging.info("程序开始")
     ip = Client.get_my_ip()
-    consumer = Consumer(os.path.join(os.getcwd(), "settings.json"))
+    consumer = Consumer(setting_file)
     list = consumer.get_dns_list()
     for item in list:
         old_ip = item['Value'];
